@@ -14,8 +14,20 @@ export class PlantPage implements OnInit {
   ngOnInit() {
   }
 
+  waterplant() {
+    //this.plantService.createPlant("Desert");
+  }
+
   createPlant() {
     this.plantService.createPlant();
+  }
+
+  createDesertPlant() {
+    this.plantService.createPlant("Desert");
+  }
+
+  createTropicalPlant() {
+    this.plantService.createPlant("Tropical");
   }
 
   getUserPlant() {

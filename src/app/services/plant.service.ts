@@ -45,7 +45,7 @@ export class PlantService {
       switch (type) {
         case "Desert":
           totalTimeframe = totalTimeframe * 1.5
-          atck = 8
+          atck = 10
           def = 8
           break
         case "Tropical":
@@ -148,14 +148,14 @@ export class PlantService {
         await this.afAuth.user.subscribe(async user => {
           if (user) {
             console.log(user.uid)
-            const docRef = this.db.collection('plants').ref.where("uid", "==", user?.uid).get().then((data: any) => {
+            this.db.collection('plants').ref.where("uid", "==", user?.uid).get().then((data: any) => {
               data.forEach(async (raul: any) => {
                 let plantId = raul.id
                 await this.db.collection("plants").doc(plantId).update(
                   {
                     water: this.plant.currentWaterLevel,
                     needsWater: this.plant.needsWater,
-                    canBeWatered: this.plant.canBeWatered
+                    canBeWatered: this.plant.canBeWatered,
                   }
                 ).then(async () => {
                   await this.calculateScore()
