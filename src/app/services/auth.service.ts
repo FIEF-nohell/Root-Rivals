@@ -30,12 +30,6 @@ export class AuthService {
               uid: this.uid,
               plantId: null,
             }).then(async ses => {
-
-/*               this.db.collection("users/").doc(this.uid).collection('achievements').doc('Win').set({
-                achieved: false
-              })
-              .then(ses => {
-                }) */
               location.reload();
             })
           })
@@ -46,7 +40,6 @@ export class AuthService {
             message: err.message,
             buttons: ["RETRY"]
           })
-
           await alert.present();
         }
       )
@@ -74,7 +67,6 @@ export class AuthService {
             message: err.message,
             buttons: ["RETRY"]
           })
-
           await alert.present();
         }
       )
@@ -90,7 +82,7 @@ export class AuthService {
             location.reload();
           }).catch((error) => {
             reject();
-          });
+        });
       }
     })
   }

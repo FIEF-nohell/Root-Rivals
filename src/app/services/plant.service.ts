@@ -84,8 +84,8 @@ export class PlantService {
     try {
       await this.afAuth.user.subscribe(async user => {
         await this.db.collection("plants").ref.where("uid", "==", user?.uid).get().then((data: any) => {
-          data.forEach(async (element: any) => {
-            this.plant = element.data()
+          data.forEach(async (mathias: any) => {
+            this.plant = mathias.data()
             console.log(this.plant)
             await this.calculateWaterLevel()
           });
@@ -133,8 +133,8 @@ export class PlantService {
           if (user) {
             console.log(user.uid)
             const docRef = this.db.collection('plants').ref.where("uid", "==", user?.uid).get().then((data: any) => {
-              data.forEach(async (element: any) => {
-                let plantId = element.id
+              data.forEach(async (raul: any) => {
+                let plantId = raul.id
                 await this.db.collection("plants").doc(plantId).update(
                   {
                     water: this.plant.currentWaterLevel,
