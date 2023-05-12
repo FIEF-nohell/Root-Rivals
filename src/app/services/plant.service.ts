@@ -17,6 +17,7 @@ interface Plant {
   experience: number;           // 0 - 100, scales up
   wins: number;
   losses: number;
+  plantType: string;            // Desert, Tropical, Mediteran
   health: number;               // 0 - 100
   waterInterval: number,        // in minutes
   perfectTimeframe: number[],
@@ -35,10 +36,24 @@ export class PlantService {
 
   public plant: any = [];
 
-  async createPlant() {
+  async createPlant(type: string = "Mediteran") {
     try {
       const user = await this.afAuth.currentUser;
-
+      let totalTimeframe = 300
+      let atck = 10
+      let def = 5
+      switch (type) {
+        case "Desert":
+          totalTimeframe = totalTimeframe * 1.5
+          atck = 8
+          def = 8
+          break
+        case "Tropical":
+          totalTimeframe = totalTimeframe * 0.5
+          atck = 12
+          def = 3
+          break
+      }
       const newPlant: Plant = {
         name: user!.displayName! + "'s Plant",
         owner: user!.displayName!,
@@ -47,14 +62,15 @@ export class PlantService {
         lastWatered: Date.now(),
         born: Date.now(),
         lastDrought: null,
-        defense: 2,
-        damage: 10,
+        defense: def,
+        plantType: type,
+        damage: atck,
         experience: 0,
         wins: 0,
         losses: 0,
         health: 100,
-        waterInterval: 300,
-        perfectTimeframe: [60, 120],
+        waterInterval: totalTimeframe,
+        perfectTimeframe: [totalTimeframe*0.2, totalTimeframe*0.4],
         canBeWatered: false,
         needsWater: false,
         level: 1,
