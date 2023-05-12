@@ -1,5 +1,14 @@
 ion-content {
 
+    div.logo{
+        ion-title.header1{
+            font-size: 35px;
+        }
+        ion-title.header2{
+            margin-top: 30px;
+        }
+    }
+
     div.content {
         position: absolute;
         bottom: 30px;

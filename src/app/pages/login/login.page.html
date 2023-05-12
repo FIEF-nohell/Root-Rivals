@@ -1,8 +1,10 @@
 <ion-content [fullscreen]="true">
 
-<!--   <div class="logo">
-    <ion-title class="ion-text-center" style="cursor: default;">Find out what's going on.</ion-title>
-  </div> -->
+  <div class="logo">
+    <img src="../../../assets/logos/logo_white.png">
+    <ion-title class="ion-text-center header1" style="cursor: default;">Root Rivals</ion-title>
+    <ion-title class="ion-text-center header2" style="cursor: default;">Grow and Fight</ion-title>
+  </div>
   <div class="content">
     <ion-button id="open-modal-register" color="primary" shape="round" expand="full">
       Create Account
@@ -16,7 +18,7 @@
         <ion-header class="ion-no-border">
           <ion-toolbar> 
             <ion-buttons slot="start">
-              <ion-button mode="ios" (click)="register_cancel()">Cancel</ion-button>
+              <ion-button mode="ios" color="dark" (click)="register_cancel()">Cancel</ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header> 
@@ -34,7 +36,7 @@
               <ion-label position="stacked" [ngStyle]="{'opacity': reg_password!.value ? '1' : '0', 'white-space': 'normal'}">Password <b *ngIf="reg_password!.value && !reg_password!.valid"><br>At least 6 Characters and 1 Number</b></ion-label>
               <ion-input placeholder="Password" type="password" formControlName="reg_password" [ngClass]="reg_password!.value ? reg_password!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
             </ion-item>
-            <ion-button size="small" shape="round" (click)="register_confirm()">Continue</ion-button>
+            <ion-button style="border: 2px black solid; border-radius: 15px" color="white" size="medium" shape="round" (click)="register_confirm()">Continue</ion-button>
           </form>
         </ion-content>
       </ng-template>
@@ -46,7 +48,7 @@
       <ion-header class="ion-no-border">
         <ion-toolbar> 
           <ion-buttons slot="start">
-            <ion-button mode="ios" (click)="login_cancel()">Cancel</ion-button>
+            <ion-button mode="ios" color="dark" (click)="login_cancel()">Cancel</ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
