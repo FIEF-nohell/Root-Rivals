@@ -1,0 +1,28 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    
+    <ion-tab-button tab="scoreboard">
+      <ion-icon name="bar-chart-outline"></ion-icon> 
+    </ion-tab-button>
+
+    <ion-tab-button tab="fight">
+      <ion-icon name="search-outline"></ion-icon> 
+    </ion-tab-button> 
+    
+    <ion-tab-button tab="plant"> 
+      <ion-avatar>
+        <img src="../../assets/plant-icons/Maikeru_Aloe_Vera_Plant_in_a_pot_plant_for_a_website_realistic__cea85fc9-8f1d-4a93-a19e-ad086acae0ee.png" />
+      </ion-avatar>
+    </ion-tab-button>
+
+    <ion-tab-button tab="notifications"> 
+      <ion-icon name="notifications-outline"></ion-icon>
+      <ion-badge *ngIf="notifications" id="notification-badge"></ion-badge> 
+    </ion-tab-button>
+
+    <ion-tab-button tab="settings"> 
+      <ion-icon name="settings-outline"></ion-icon>  
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>
