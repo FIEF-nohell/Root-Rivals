@@ -42,7 +42,7 @@
               <ion-label position="stacked" [ngStyle]="{'opacity': reg_password!.value ? '1' : '0', 'white-space': 'normal'}">Password <b style=" color: black; opacity: 0.3" *ngIf="reg_password!.value && !reg_password!.valid"><br >At least 6 Characters and 1 Number</b></ion-label>
               <ion-input placeholder="Password" type="password" formControlName="reg_password" [ngClass]="reg_password!.value ? reg_password!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
             </ion-item>
-            <ion-button style="border: 2px solid white; border-radius: 20px; --background-color: rgba(0,0,0,0.3); color: white;" size="medium" shape="round" (click)="login_confirm()">Continue</ion-button>
+            <ion-button style="border: 2px solid white; border-radius: 20px; --background-color: rgba(0,0,0,0.3); color: white;" size="medium" shape="round" (click)="register_confirm()">Continue</ion-button>
           </form>
         </ion-content>
       </ng-template>

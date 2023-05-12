@@ -14,6 +14,7 @@ export class PlantPage implements OnInit {
   canBeWatered = this.plantService.plant.canBeWatered;
 
   async ngOnInit() {
+    this.plantCheck()
     try {
       await this.plantService.getUserPlant();
       
@@ -28,6 +29,10 @@ export class PlantPage implements OnInit {
       // Handle any errors that occur during the getUserPlant() method
       console.error(error);
     }
+  }
+
+  async plantCheck(){
+    //this.plantService.hasPlant()
   }
 
   waterPlant() {
