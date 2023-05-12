@@ -8,3 +8,5 @@ https://www.flaticon.com/free-icon/sword_3119419
 <ion-icon name="leaf-outline"></ion-icon>
 <ion-icon name="notifications-outline"></ion-icon>
 <ion-icon name="settings-outline"></ion-icon>
+<ion-icon name="skull-outline"></ion-icon>
+<ion-icon name="skull-outline"></ion-icon>
