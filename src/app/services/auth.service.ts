@@ -8,7 +8,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class AuthService {
 
-  uid: any;
+  public uid: any;
 
   constructor(private afAuth: AngularFireAuth, private db: AngularFirestore, private alertController: AlertController) { }
 
@@ -50,6 +50,14 @@ export class AuthService {
           await alert.present();
         }
       )
+    })
+  }
+
+  async getUid() {
+    await this.afAuth.user.subscribe(user => { 
+      if (user) {
+        this.uid = user.uid
+      }
     })
   }
 

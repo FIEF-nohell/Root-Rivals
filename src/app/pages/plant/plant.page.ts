@@ -22,6 +22,10 @@ export class PlantPage implements OnInit {
     this.plantService.getUserPlant();
   }
 
+  stats() {
+    this.plantService.getUserPlant();
+  }
+
   logout() {
     this.auth.signOut();
   }
