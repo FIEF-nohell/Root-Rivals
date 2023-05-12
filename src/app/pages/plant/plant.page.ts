@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { PlantService } from 'src/app/services/plant.service';
 
 @Component({
   selector: 'app-plant',
@@ -8,9 +9,13 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class PlantPage implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private plantService: PlantService) { }
 
   ngOnInit() {
+  }
+
+  createPlant() {
+    this.plantService.createPlant();
   }
 
   logout() {

@@ -24,11 +24,11 @@
           <form [formGroup]="registerForm">
             <ion-item lines="none"> 
               <ion-label position="stacked" [ngStyle]="{'opacity': reg_username!.value ? '1' : '0'}">Name</ion-label>
-              <ion-input placeholder="Display Name" type="name" formControlName="reg_username" [ngClass]="reg_username!.value ? reg_username!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+              <ion-input placeholder="Username" type="name" formControlName="reg_username" [ngClass]="reg_username!.value ? reg_username!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
             </ion-item>
             <ion-item lines="none"> 
               <ion-label position="stacked" [ngStyle]="{'opacity': reg_email!.value ? '1' : '0'}">Email</ion-label>
-              <ion-input placeholder="Email" type="email" formControlName="reg_email" [ngClass]="reg_email!.value ? reg_email!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+              <ion-input placeholder="E-Mail" type="email" formControlName="reg_email" [ngClass]="reg_email!.value ? reg_email!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
             </ion-item>
             <ion-item lines="none"> 
               <ion-label position="stacked" [ngStyle]="{'opacity': reg_password!.value ? '1' : '0', 'white-space': 'normal'}">Password <b *ngIf="reg_password!.value && !reg_password!.valid"><br>At least 6 Characters and 1 Number</b></ion-label>
@@ -54,7 +54,7 @@
         <form [formGroup]="loginForm">
           <ion-item lines="none"> 
             <ion-label position="stacked" [ngStyle]="{'opacity': log_email!.value ? '1' : '0'}">Email</ion-label>
-            <ion-input placeholder="Email" type="email" formControlName="log_email" [ngClass]="log_email!.value ? log_email!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+            <ion-input placeholder="E-Mail" type="email" formControlName="log_email" [ngClass]="log_email!.value ? log_email!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
           </ion-item>
           <ion-item lines="none"> 
             <ion-label position="stacked" [ngStyle]="{'opacity': log_password!.value ? '1' : '0', 'white-space': 'normal'}">Password <b *ngIf="log_password!.value && !log_password!.valid"><br>At least 6 Characters and 1 Number</b></ion-label>

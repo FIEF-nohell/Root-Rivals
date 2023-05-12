@@ -28,6 +28,7 @@ export class AuthService {
               name: name,
               email: email.toLowerCase(),
               uid: this.uid,
+              plantId: null,
             }).then(async ses => {
 
 /*               this.db.collection("users/").doc(this.uid).collection('achievements').doc('Win').set({
