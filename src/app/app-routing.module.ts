@@ -50,6 +50,10 @@ const routes: Routes = [
     ...canActivate(redirectLoggedInToHome)
     
   },
+  {
+    path: 'new-plant',
+    loadChildren: () => import('./modals/new-plant/new-plant.module').then( m => m.NewPlantPageModule)
+  },
 
 
 ];

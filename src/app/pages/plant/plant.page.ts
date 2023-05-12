@@ -12,6 +12,11 @@ export class PlantPage implements OnInit {
   constructor(private auth: AuthService, private plantService: PlantService) { }
 
   ngOnInit() {
+    this.plantCheck() //Checks if the user has a plant already
+  }
+
+  async plantCheck(){
+    this.plantService.hasPlant()
   }
 
   waterPlant() {
