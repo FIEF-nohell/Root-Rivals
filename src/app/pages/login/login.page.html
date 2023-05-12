@@ -1,13 +1,69 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
+
+<!--   <div class="logo">
+    <ion-title class="ion-text-center" style="cursor: default;">Find out what's going on.</ion-title>
+  </div> -->
+  <div class="content">
+    <ion-button id="open-modal-register" color="primary" shape="round" expand="full">
+      Create Account
+    </ion-button>
+    <p class="ion-text-center">Already have an account? <span id="open-modal-login">Log in</span></p>
+  </div>
+  
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
+    <ion-modal class="register" trigger="open-modal-register" #register_modal>
+      <ng-template>
+        <ion-header class="ion-no-border">
+          <ion-toolbar> 
+            <ion-buttons slot="start">
+              <ion-button mode="ios" (click)="register_cancel()">Cancel</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header> 
+        <ion-content class="ion-padding">
+          <form [formGroup]="registerForm">
+            <ion-item lines="none"> 
+              <ion-label position="stacked" [ngStyle]="{'opacity': reg_username!.value ? '1' : '0'}">Name</ion-label>
+              <ion-input placeholder="Display Name" type="name" formControlName="reg_username" [ngClass]="reg_username!.value ? reg_username!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+            </ion-item>
+            <ion-item lines="none"> 
+              <ion-label position="stacked" [ngStyle]="{'opacity': reg_email!.value ? '1' : '0'}">Email</ion-label>
+              <ion-input placeholder="Email" type="email" formControlName="reg_email" [ngClass]="reg_email!.value ? reg_email!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+            </ion-item>
+            <ion-item lines="none"> 
+              <ion-label position="stacked" [ngStyle]="{'opacity': reg_password!.value ? '1' : '0', 'white-space': 'normal'}">Password <b *ngIf="reg_password!.value && !reg_password!.valid"><br>At least 6 Characters and 1 Number</b></ion-label>
+              <ion-input placeholder="Password" type="password" formControlName="reg_password" [ngClass]="reg_password!.value ? reg_password!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+            </ion-item>
+            <ion-button size="small" shape="round" (click)="register_confirm()">Continue</ion-button>
+          </form>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
   </ion-header>
+
+  <ion-modal class="login" trigger="open-modal-login" #login_modal>
+    <ng-template>
+      <ion-header class="ion-no-border">
+        <ion-toolbar> 
+          <ion-buttons slot="start">
+            <ion-button mode="ios" (click)="login_cancel()">Cancel</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <form [formGroup]="loginForm">
+          <ion-item lines="none"> 
+            <ion-label position="stacked" [ngStyle]="{'opacity': log_email!.value ? '1' : '0'}">Email</ion-label>
+            <ion-input placeholder="Email" type="email" formControlName="log_email" [ngClass]="log_email!.value ? log_email!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+          </ion-item>
+          <ion-item lines="none"> 
+            <ion-label position="stacked" [ngStyle]="{'opacity': log_password!.value ? '1' : '0', 'white-space': 'normal'}">Password <b *ngIf="log_password!.value && !log_password!.valid"><br>At least 6 Characters and 1 Number</b></ion-label>
+            <ion-input placeholder="Password" type="password" formControlName="log_password" [ngClass]="log_password!.value ? log_password!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
+          </ion-item>
+          <ion-button size="small" shape="round" (click)="login_confirm()">Continue</ion-button>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
 </ion-content>

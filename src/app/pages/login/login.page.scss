@@ -1,0 +1,66 @@
+ion-content {
+
+    div.content {
+        position: absolute;
+        bottom: 30px;
+        width: 100%;
+
+        ion-button {
+            font-size: 3.2vw;
+            height: 5vh;
+            margin: 0 50px;
+            font-weight: bold;
+            font-family: 'Lato', sans-serif;
+        }
+
+        p {
+            color: rgb(18, 18, 18);
+            font-size: 3vw;
+            cursor: default;
+
+            span {
+                color: var(--ion-color-primary);
+                font-weight: bold;
+
+            }
+
+            span:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+}
+
+.invalid-input {
+    border-bottom: var(--ion-color-danger) 1.5px solid;
+}
+
+.empty-input {
+    border-bottom: rgb(255, 255, 255) 1.5px solid;
+}
+
+.valid-input {
+    border-bottom: rgb(255, 255, 255) 1.5px solid;
+}
+
+@media only screen and (min-width: 1300px) {
+    div.content {
+        bottom: 30px;
+        width: 100%;
+
+        ion-button {
+            font-size: 18px !important;
+            height: 50px !important;
+            margin: 0 50px;
+            font-weight: bold;
+            font-family: 'Lato', sans-serif;
+        }
+
+        p {
+            color: rgb(187, 187, 187);
+            font-size: 16px !important;
+            cursor: default;
+        }
+    }
+}
