@@ -18,6 +18,10 @@ export class PlantPage implements OnInit {
     this.plantService.createPlant();
   }
 
+  getUserPlant() {
+    this.plantService.getUserPlant();
+  }
+
   logout() {
     this.auth.signOut();
   }

@@ -6,6 +6,7 @@ import { AlertController } from '@ionic/angular';
 interface Plant {
   name: string;
   owner: string;
+  uid: string;
   water: number;
   born: number;
   lastWatered: number;
@@ -32,6 +33,7 @@ export class PlantService {
       const newPlant: Plant = {
         name: user!.displayName! + "'s Plant",
         owner: user!.displayName!,
+        uid: user!.uid!,
         water: 100,
         lastWatered: Date.now(),
         born: Date.now(),
@@ -63,4 +65,20 @@ export class PlantService {
       console.error('Error creating plant:', error);
     }
   }
+
+  async getUserPlant() {
+    try {
+      const user = await this.afAuth.currentUser;
+      await this.afAuth.user.subscribe(async user => {
+        await this.db.collection("plants").ref.where("uid", "==", user?.uid).get().then((data: any) => {
+          data.forEach((element: any) => {
+            console.log(element.data())
+          });
+        })
+      })
+    } catch (error) {
+      console.error('Error while fetching plant:', error);
+    }
+  }
+
 }
