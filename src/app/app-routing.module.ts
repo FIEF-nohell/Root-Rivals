@@ -10,7 +10,27 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
   },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
+  },
+  {
+    path: 'plant',
+    loadChildren: () => import('./pages/plant/plant.module').then( m => m.PlantPageModule)
+  },
+  {
+    path: 'fight',
+    loadChildren: () => import('./pages/fight/fight.module').then( m => m.FightPageModule)
+  },
+  {
+    path: 'scoreboard',
+    loadChildren: () => import('./pages/scoreboard/scoreboard.module').then( m => m.ScoreboardPageModule)
+  },
+
 ];
 
 @NgModule({
