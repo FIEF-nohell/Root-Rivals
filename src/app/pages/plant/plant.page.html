@@ -15,7 +15,7 @@
   <h2 (click)="createDesertPlant()">create desert plant</h2>
   <h2 (click)="createTropicalPlant()">create tropical plant</h2>
   <h2 (click)="getUserPlant()">get user plant</h2>
-  <ion-button (click)="waterPlant()" expand="block" fill="clear" shape="round">
+  <ion-button [disabled]="canBeWatered==false" (click)="waterPlant()" expand="block" shape="round">
     Water Plant
   </ion-button>
   <h2 (click)="stats()">get user stats</h2>
