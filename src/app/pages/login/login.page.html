@@ -6,7 +6,7 @@
     <ion-title class="ion-text-center header2" style="cursor: default;">Grow and Fight</ion-title>
   </div>
   <div class="content">
-    <ion-button id="open-modal-register" color="primary" shape="round" expand="full">
+    <ion-button id="open-modal-register" color="tertiary" shape="round" expand="full">
       Create Account
     </ion-button>
     <p class="ion-text-center">Already have an account? <span id="open-modal-login">Log in</span></p>
@@ -23,6 +23,12 @@
           </ion-toolbar>
         </ion-header> 
         <ion-content class="ion-padding">
+
+          <div class="mascot">
+            <img style="-webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(5px 5px 5px #222);" src="../../../assets/logos/mascot.png">
+            <ion-label class="ion-text-center" color="dark" style="cursor: default;">Hello new friend!</ion-label>
+          </div>
+
           <form [formGroup]="registerForm">
             <ion-item lines="none"> 
               <ion-label position="stacked" [ngStyle]="{'opacity': reg_username!.value ? '1' : '0'}">Name</ion-label>
@@ -33,10 +39,10 @@
               <ion-input placeholder="E-Mail" type="email" formControlName="reg_email" [ngClass]="reg_email!.value ? reg_email!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
             </ion-item>
             <ion-item lines="none"> 
-              <ion-label position="stacked" [ngStyle]="{'opacity': reg_password!.value ? '1' : '0', 'white-space': 'normal'}">Password <b *ngIf="reg_password!.value && !reg_password!.valid"><br>At least 6 Characters and 1 Number</b></ion-label>
+              <ion-label position="stacked" [ngStyle]="{'opacity': reg_password!.value ? '1' : '0', 'white-space': 'normal'}">Password <b style=" color: black; opacity: 0.3" *ngIf="reg_password!.value && !reg_password!.valid"><br >At least 6 Characters and 1 Number</b></ion-label>
               <ion-input placeholder="Password" type="password" formControlName="reg_password" [ngClass]="reg_password!.value ? reg_password!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
             </ion-item>
-            <ion-button style="border: 2px black solid; border-radius: 15px" color="white" size="medium" shape="round" (click)="register_confirm()">Continue</ion-button>
+            <ion-button style="border: 2px solid white; border-radius: 20px; --background-color: rgba(0,0,0,0.3); color: white;" size="medium" shape="round" (click)="login_confirm()">Continue</ion-button>
           </form>
         </ion-content>
       </ng-template>
@@ -53,6 +59,12 @@
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
+
+        <div class="mascot">
+          <img style="-webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(5px 5px 5px #222);" src="../../../assets/logos/mascot.png">
+          <ion-label class="ion-text-center" style="cursor: default;">Welcome back!</ion-label>
+        </div>
+
         <form [formGroup]="loginForm">
           <ion-item lines="none"> 
             <ion-label position="stacked" [ngStyle]="{'opacity': log_email!.value ? '1' : '0'}">Email</ion-label>
@@ -62,7 +74,7 @@
             <ion-label position="stacked" [ngStyle]="{'opacity': log_password!.value ? '1' : '0', 'white-space': 'normal'}">Password <b *ngIf="log_password!.value && !log_password!.valid"><br>At least 6 Characters and 1 Number</b></ion-label>
             <ion-input placeholder="Password" type="password" formControlName="log_password" [ngClass]="log_password!.value ? log_password!.valid ? 'valid-input' : 'invalid-input' : 'empty-input'"></ion-input>
           </ion-item>
-          <ion-button size="small" shape="round" (click)="login_confirm()">Continue</ion-button>
+          <ion-button style="border: 2px solid white; border-radius: 20px; --background-color: rgba(0,0,0,0.3); color: white;" size="medium" shape="round" (click)="login_confirm()">Continue</ion-button>
         </form>
       </ion-content>
     </ng-template>

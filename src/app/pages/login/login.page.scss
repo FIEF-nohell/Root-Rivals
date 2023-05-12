@@ -28,7 +28,7 @@ ion-content {
             cursor: default;
 
             span {
-                color: var(--ion-color-primary);
+                color: var(--ion-color-tertiary);
                 font-weight: bold;
 
             }
@@ -46,11 +46,11 @@ ion-content {
 }
 
 .empty-input {
-    border-bottom: rgb(255, 255, 255) 1.5px solid;
+    border-bottom: rgb(255, 255, 255) 1.5px solid; 
 }
 
 .valid-input {
-    border-bottom: rgb(255, 255, 255) 1.5px solid;
+    border-bottom: rgb(255, 255, 255) 1.5px solid; 
 }
 
 @media only screen and (min-width: 1300px) {
