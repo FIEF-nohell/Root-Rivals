@@ -2,26 +2,24 @@
   <ion-tab-bar slot="bottom">
     
     <ion-tab-button tab="scoreboard">
-      <ion-icon name="bar-chart-outline"></ion-icon> 
+      <ion-icon src="assets/tab-icons/scoreboard.svg"></ion-icon> 
     </ion-tab-button>
 
     <ion-tab-button tab="fight">
-      <ion-icon name="search-outline"></ion-icon> 
+      <ion-icon src="assets/tab-icons/fight.svg"></ion-icon> 
     </ion-tab-button> 
     
     <ion-tab-button tab="plant"> 
-      <ion-avatar>
-        <img src="../../assets/plant-icons/Maikeru_Aloe_Vera_Plant_in_a_pot_plant_for_a_website_realistic__cea85fc9-8f1d-4a93-a19e-ad086acae0ee.png" />
-      </ion-avatar>
+      <ion-icon src="assets/tab-icons/plant.svg"></ion-icon>
     </ion-tab-button>
 
     <ion-tab-button tab="notifications"> 
-      <ion-icon name="notifications-outline"></ion-icon>
-      <ion-badge *ngIf="notifications" id="notification-badge"></ion-badge> 
+      <ion-icon *ngIf="!notifications" src="assets/tab-icons/notifications.svg"></ion-icon>
+      <ion-icon *ngIf="notifications" src="assets/tab-icons/unread-notifications.svg"></ion-icon>
     </ion-tab-button>
 
     <ion-tab-button tab="settings"> 
-      <ion-icon name="settings-outline"></ion-icon>  
+      <ion-icon src="assets/tab-icons/settings.svg"></ion-icon>  
     </ion-tab-button>
 
   </ion-tab-bar>
