@@ -15,7 +15,7 @@ export class PlantPage implements OnInit {
   needsWater = false
   plantLel: any;
 
-  public progress = 0.7;
+  public progress = 0;
 
   ngOnInit() {
     this.plantCheck() // Check if user has Plant
@@ -25,6 +25,7 @@ export class PlantPage implements OnInit {
         this.plantLel = plant; 
         this.canBeWatered = plant.canBeWatered;
         this.needsWater = plant.needsWater;
+        this.progress = this.plantLel.water * 0.01 
       }
     });
   }
