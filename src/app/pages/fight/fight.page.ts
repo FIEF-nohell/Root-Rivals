@@ -72,7 +72,7 @@ export class FightPage implements OnInit {
     console.log(this.plant, this.opponent)
 
     for (let x = 0; x < x+1; x++) {
-      await this.delay(100)
+      await this.delay(500)
       if (x % 2 == 0) {
         this.attackPlant(this.opponent, this.plant)
       }
