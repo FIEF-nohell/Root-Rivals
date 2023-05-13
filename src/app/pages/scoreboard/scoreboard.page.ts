@@ -16,8 +16,9 @@ export class ScoreboardPage implements OnInit {
 
   getObs(){
     this.statsService.observableScoreboard().subscribe((list) => {
+      console.log("list: ")
       list.forEach((element: any) => {
-        console.log(element)
+        console.log(element.data())
       });
     })
   }

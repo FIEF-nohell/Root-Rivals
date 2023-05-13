@@ -25,10 +25,8 @@ export class StatsService {
 
   observableScoreboard(): Observable<any> {
     return new Observable<any | null>((observer: { next: (arg0: null) => void; complete: () => void; }) => {
-      let allPlants = this.db.collection('plants').ref.orderBy("plantScore", "desc").get().then((data: any) => {
-        data.forEach((element: any) => {
-          this.statsEntries$.next(element)
-        });
+      this.db.collection('plants').ref.orderBy("plantScore", "desc").get().then((data: any) => {
+        observer.next(data)
         observer.complete();
       });
     });
