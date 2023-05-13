@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ViewWillEnter } from '@ionic/angular';
+import { AlertController, ViewWillEnter } from '@ionic/angular';
 import { FightService } from 'src/app/services/fight.service';
 import { PlantService } from 'src/app/services/plant.service';
 
@@ -16,7 +16,7 @@ export class FightPage implements OnInit, ViewWillEnter {
   results: boolean = false;
   win: boolean = false;
 
-  constructor(private fightService: FightService, private plantService: PlantService, private router: Router) { } 
+  constructor(private alertController: AlertController, private fightService: FightService, private plantService: PlantService, private router: Router) { } 
 
   opponent: any = [];
   plant: any = [];
@@ -61,7 +61,8 @@ export class FightPage implements OnInit, ViewWillEnter {
   search_enemy() {
     //Call Combat Service and search enemy
     this.fightService.getOpponentObservable().subscribe((opponent) => {
-        this.plantService.getUserPlantObservable().subscribe((plant) => { // Check if can be watered
+      if(opponent)
+        this.plantService.getUserPlantObservable().subscribe(async (plant) => { // Check if can be watered
           if (plant !== undefined) {
             this.opponent = opponent;
             this.plant = plant;
@@ -70,6 +71,15 @@ export class FightPage implements OnInit, ViewWillEnter {
             console.log(this.opponent)
             console.log(this.plant)
             this.start_fight()
+        }
+        else{
+          const alert = await this.alertController.create({
+            header: "No enemies found.", 
+            message: 'Please try again later.',
+            buttons: ['OK'],
+          });
+      
+          await alert.present();
         }
       });
     })
