@@ -281,23 +281,23 @@ export class PlantService {
   }
 
   getUserPlantObservable(): Observable<Plant | null> {
-  return new Observable<Plant | null>((observer: { next: (arg0: null) => void; complete: () => void; }) => {
-    this.afAuth.user.subscribe((user) => {
-      if (user) {
-        this.db.collection("plants").ref.where("uid", "==", user.uid).get().then((data: any) => {
-          data.forEach(async (mathias: any) => {
-            this.plant = mathias.data();
-            await this.calculateWaterLevel();
-            observer.next(this.plant);
-            observer.complete();
+    return new Observable<Plant | null>((observer: { next: (arg0: null) => void; complete: () => void; }) => {
+      this.afAuth.user.subscribe((user) => {
+        if (user) {
+          this.db.collection("plants").ref.where("uid", "==", user.uid).get().then((data: any) => {
+            data.forEach(async (mathias: any) => {
+              this.plant = mathias.data();
+              await this.calculateWaterLevel();
+              observer.next(this.plant);
+              observer.complete();
+            });
           });
-        });
-      } else {
-        observer.next(null);
-        observer.complete();
-      }
+        } else {
+          observer.next(null);
+          observer.complete();
+        }
+      });
     });
-  });
-}
+  }
 
 }

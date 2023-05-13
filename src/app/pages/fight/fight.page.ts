@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { FightService } from 'src/app/services/fight.service';
 
 @Component({
   selector: 'app-fight',
@@ -11,8 +12,9 @@ export class FightPage implements OnInit {
   in_fight: boolean = false;
   results: boolean = false;
 
-  constructor() { } 
+  constructor(private fightService: FightService) { } 
 
+  opponent: any = {}
   enemy_damage = 0;
   self_damage = 0;
 
@@ -39,7 +41,10 @@ export class FightPage implements OnInit {
 
   search_enemy(){
     //Call Combat Service and search enemy
-    this.start_fight()
+    this.fightService.getOpponentObservable().subscribe((opponent) => {
+      console.log(opponent)
+      this.start_fight()
+    })
   }
 
   start_fight(){

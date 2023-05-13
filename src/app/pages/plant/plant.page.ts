@@ -20,7 +20,6 @@ export class PlantPage implements OnInit {
 
   ngOnInit() {
     this.plantCheck() // Check if user has Plant
-    this.fightService.getRandomOpponent()
 
     this.plantService.getUserPlantObservable().subscribe((plant) => { // Check if can be watered
       if (plant && plant.canBeWatered !== undefined) {

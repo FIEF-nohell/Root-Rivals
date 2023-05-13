@@ -4,6 +4,7 @@ import { AngularFirestore, DocumentReference } from '@angular/fire/compat/firest
 import { AlertController, ModalController } from '@ionic/angular';
 import { AuthService } from './auth.service';
 import { NewPlantPage } from '../modals/new-plant/new-plant.page';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class FightService {
   constructor(private afAuth: AngularFireAuth, private auth: AuthService, private db: AngularFirestore) { }
 
   opponents: any = []
+  public opponent$ = new BehaviorSubject<any>({});
   opponent: any
 
   getRandomItem<T>(items: T[]): T | undefined {
@@ -23,7 +25,7 @@ export class FightService {
   const randomIndex = Math.floor(Math.random() * items.length);
   return items[randomIndex];
 }
-
+/* 
   async getRandomOpponent() {
     try {
       this.opponents = []
@@ -35,11 +37,31 @@ export class FightService {
             });
           });
           this.opponent = this.getRandomItem(this.opponents);
-          console.log(this.opponent)
+          return this.opponent
         }
       });
     } catch (error) {
       console.error('Error while updating plant:', error)
     }
+  }
+ */
+  getOpponentObservable(): Observable<any | null> {
+    return new Observable<any | null>((observer: { next: (arg0: null) => void; complete: () => void; }) => {
+      this.afAuth.user.subscribe(async user => {
+        if (user) {
+          await this.db.collection('plants').ref.where("uid", "!=", user?.uid).get().then((data: any) => {
+            data.forEach(async (mathias: any) => {
+              if(mathias.data().attackable == true) this.opponents.push(mathias.data())
+            });
+            this.opponent = this.getRandomItem(this.opponents)
+            observer.next(this.opponent);
+            observer.complete();
+          });
+        } else {
+          observer.next(null);
+          observer.complete();
+        }
+      });
+    });
   }
 }
