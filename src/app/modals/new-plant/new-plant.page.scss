@@ -6,6 +6,7 @@ ion-content{
         ion-row{
             ion-col{
                 ion-card{
+                    transition: all 0.5s;
                     background-color: rgba(255,255,255,0.6);
                     margin: 5px;
                     border-radius: 10px;  
