@@ -16,10 +16,11 @@ export class FightPage implements OnInit {
 
   constructor(private fightService: FightService, private plantService: PlantService) { } 
 
-  opponent: any = []
-  plant: any = []
+  opponent: any = [];
+  plant: any = [];
   enemy_damage = 0;
   self_damage = 0;
+  setXP = 50;
   
   ngOnInit() {
 
@@ -80,6 +81,7 @@ export class FightPage implements OnInit {
       }
       if (this.plant.health <= 0) {
         this.plant.health = 0
+        this.setXP = this.setXP/2
         await this.delay(500)
         this.in_fight = false;
         this.win = false;

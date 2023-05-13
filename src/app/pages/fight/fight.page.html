@@ -44,7 +44,8 @@
 <ion-content [fullscreen]="true" *ngIf="!in_fight && results">
   <ion-card style="position: relative; top: 50%; transform: translateY(-50%)">
     <ion-card-header>
-      <ion-card-subtitle>+50 XP</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="this.win">+{{setXP}} XP</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="!this.win">+{{setXP/2}} XP</ion-card-subtitle>
       <ion-card-title *ngIf="this.win">Congratulations</ion-card-title>
       <ion-card-title *ngIf="!this.win">Unlucky</ion-card-title>
     </ion-card-header>
