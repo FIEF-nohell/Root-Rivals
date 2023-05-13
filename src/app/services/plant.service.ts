@@ -5,7 +5,6 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { AuthService } from './auth.service';
 import { NewPlantPage } from '../modals/new-plant/new-plant.page';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { PlantPage } from '../pages/plant/plant.page';
 
 interface Plant {
   name: string;
@@ -36,7 +35,7 @@ interface Plant {
 })
 export class PlantService {
 
-  constructor(private modalController: ModalController, private pp: PlantPage, private afAuth: AngularFireAuth, private auth: AuthService, private db: AngularFirestore, private alertController: AlertController) { }
+  constructor(private modalController: ModalController, private afAuth: AngularFireAuth, private auth: AuthService, private db: AngularFirestore, private alertController: AlertController) { }
 
   public plant: any | null = null;
   public canBeWatered$ = new BehaviorSubject<boolean>(false);
@@ -98,7 +97,7 @@ export class PlantService {
           text: 'Ok',
           role: 'confirm',
           handler: () => {
-            this.pp.ngOnInit()
+            location.reload()
           },
         },]
       });

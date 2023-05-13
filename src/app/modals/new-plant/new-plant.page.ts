@@ -48,7 +48,7 @@ export class NewPlantPage implements OnInit {
     if (this.activePlant != "" && this.type != "") {
       let url = this.activePlant.toLowerCase().replace(/\s/g, "_");
       this.plantService.createPlant(this.type, url)
-      location.reload()
+      this.modalController.dismiss()
     }
   }
 
