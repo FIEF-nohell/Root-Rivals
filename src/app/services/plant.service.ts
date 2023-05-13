@@ -5,6 +5,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { AuthService } from './auth.service';
 import { NewPlantPage } from '../modals/new-plant/new-plant.page';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { PlantPage } from '../pages/plant/plant.page';
 
 interface Plant {
   name: string;
@@ -35,7 +36,7 @@ interface Plant {
 })
 export class PlantService {
 
-  constructor(private modalController: ModalController, private afAuth: AngularFireAuth, private auth: AuthService, private db: AngularFirestore, private alertController: AlertController) { }
+  constructor(private modalController: ModalController, private pp: PlantPage, private afAuth: AngularFireAuth, private auth: AuthService, private db: AngularFirestore, private alertController: AlertController) { }
 
   public plant: any | null = null;
   public canBeWatered$ = new BehaviorSubject<boolean>(false);
@@ -93,12 +94,17 @@ export class PlantService {
       const alert = await this.alertController.create({
         header: 'Plant Created',
         message: 'New plant has been created.',
-        buttons: ['OK']
-        
+        buttons: [{
+          text: 'Ok',
+          role: 'confirm',
+          handler: () => {
+            this.pp.ngOnInit()
+          },
+        },]
       });
-      await alert.present();
+      await alert.present()
     } catch (error) {
-      console.error('Error creating plant:', error);
+      console.error('Error creating plant:', error)
     }
   }
 

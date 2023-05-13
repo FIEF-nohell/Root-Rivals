@@ -13,7 +13,7 @@ import { PlantPage } from './plant.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    PlantPageRoutingModule
+    PlantPageRoutingModule, 
   ],
   declarations: [PlantPage]
 })
