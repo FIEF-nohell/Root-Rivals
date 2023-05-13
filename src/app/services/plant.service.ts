@@ -4,6 +4,7 @@ import { AngularFirestore, DocumentReference } from '@angular/fire/compat/firest
 import { AlertController, ModalController } from '@ionic/angular';
 import { AuthService } from './auth.service';
 import { NewPlantPage } from '../modals/new-plant/new-plant.page';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 interface Plant {
   name: string;
@@ -35,7 +36,9 @@ export class PlantService {
 
   constructor(private modalController: ModalController, private afAuth: AngularFireAuth, private auth: AuthService, private db: AngularFirestore, private alertController: AlertController) { }
 
-  public plant: any = [];
+  public plant: any | null = null;
+  public canBeWatered$ = new BehaviorSubject<boolean>(false);
+  public needsWater$ = new BehaviorSubject<boolean>(false);
 
   async createPlant(type: string = "Mediteran") {
     try {
@@ -206,5 +209,65 @@ export class PlantService {
       }
     })
   }
+
+  async waterPlant(givenPlant: any) {
+    if (givenPlant.needsWater == true) {
+      this.db.collection('plants').ref.where("uid", "==", this.auth.uid).get().then((data: any) => {
+        data.forEach(async (raul: any) => {
+          let plantId = raul.id
+          await this.db.collection("plants").doc(plantId).update(
+            {
+              water: 100,
+              lastWatered: Date.now(),
+              lastDrought: Date.now(),
+              health: givenPlant.health - 10,
+            }
+          )
+        });
+      });
+    }
+    else {
+      this.db.collection('plants').ref.where("uid", "==", this.auth.uid).get().then((data: any) => {
+        data.forEach(async (raul: any) => {
+          let plantId = raul.id
+          let xp = givenPlant.experience + 20
+          let lvl = givenPlant.level
+          if (xp >= 100){
+            xp = xp - 100
+            lvl = lvl + 1
+          }
+          await this.db.collection("plants").doc(plantId).update(
+            {
+              water: 100,
+              lastWatered: Date.now(),
+              health: 100,
+              experience: xp,
+              level: lvl,
+            }
+          )
+        });
+      });
+    }
+  }
+
+  getUserPlantObservable(): Observable<Plant | null> {
+  return new Observable<Plant | null>((observer: { next: (arg0: null) => void; complete: () => void; }) => {
+    this.afAuth.user.subscribe((user) => {
+      if (user) {
+        this.db.collection("plants").ref.where("uid", "==", user.uid).get().then((data: any) => {
+          data.forEach(async (mathias: any) => {
+            this.plant = mathias.data();
+            await this.calculateWaterLevel();
+            observer.next(this.plant);
+            observer.complete();
+          });
+        });
+      } else {
+        observer.next(null);
+        observer.complete();
+      }
+    });
+  });
+}
 
 }

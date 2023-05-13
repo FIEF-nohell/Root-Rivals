@@ -11,32 +11,27 @@ export class PlantPage implements OnInit {
 
   constructor(private auth: AuthService, private plantService: PlantService) {}
 
-  canBeWatered = this.plantService.plant.canBeWatered;
+  canBeWatered = false
+  needsWater = false
+  plantLel: any;
 
-  async ngOnInit() {
+  ngOnInit() {
     this.plantCheck()
-    try {
-      await this.plantService.getUserPlant();
-      
-      if (this.plantService.plant && this.plantService.plant.canBeWatered !== undefined) {
-        this.canBeWatered = this.plantService.plant.canBeWatered;
-        console.log(this.canBeWatered);
-      } else {
-        // Handle the case when the value is undefined or not available
-        console.log("oof");
+    this.plantService.getUserPlantObservable().subscribe((plant) => {
+      if (plant && plant.canBeWatered !== undefined) {
+        this.plantLel = plant;
+        this.canBeWatered = plant.canBeWatered;
+        this.needsWater = plant.needsWater;
       }
-    } catch (error) {
-      // Handle any errors that occur during the getUserPlant() method
-      console.error(error);
-    }
+    });
   }
 
   async plantCheck(){
-    this.plantService.hasPlant()
+    //this.plantService.hasPlant()
   }
 
   waterPlant() {
-    //this.plantService.createPlant("Desert");
+    this.plantService.waterPlant(this.plantLel);
   }
 
   createPlant() {
@@ -49,10 +44,6 @@ export class PlantPage implements OnInit {
 
   createTropicalPlant() {
     this.plantService.createPlant("Tropical");
-  }
-
-  getUserPlant() {
-    this.plantService.getUserPlant();
   }
 
   stats() {

@@ -14,8 +14,7 @@
   <h2 (click)="createPlant()">create plant</h2>
   <h2 (click)="createDesertPlant()">create desert plant</h2>
   <h2 (click)="createTropicalPlant()">create tropical plant</h2>
-  <h2 (click)="getUserPlant()">get user plant</h2>
-  <ion-button *ngIf="canBeWatered" (click)="waterPlant()" expand="block" shape="round">
+  <ion-button [disabled]="this.canBeWatered==false" (click)="waterPlant()" expand="block" shape="round">
     Water Plant
   </ion-button>
   <h2 (click)="stats()">get user stats</h2>
