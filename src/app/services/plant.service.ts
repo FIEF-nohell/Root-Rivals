@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, DocumentReference } from '@angular/fire/compat/firestore';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { AuthService } from './auth.service';
+import { NewPlantPage } from '../modals/new-plant/new-plant.page';
 
 interface Plant {
   name: string;
@@ -32,7 +33,7 @@ interface Plant {
 })
 export class PlantService {
 
-  constructor(private afAuth: AngularFireAuth, private auth: AuthService, private db: AngularFirestore, private alertController: AlertController) { }
+  constructor(private modalController: ModalController, private afAuth: AngularFireAuth, private auth: AuthService, private db: AngularFirestore, private alertController: AlertController) { }
 
   public plant: any = [];
 
@@ -188,6 +189,21 @@ export class PlantService {
 
     this.db.collection("users").doc(this.auth.uid).update({
       plantScore: userScore,
+    })
+  }
+
+  async hasPlant(){
+    await this.afAuth.user.subscribe(async user => {
+      if (user) {
+        this.db.collection("plants").ref.where("uid", "==", user.uid).get().then(async (data: any) => {
+          if (data.size < 1){
+            const modal = await this.modalController.create({
+              component: NewPlantPage,
+            });
+            modal.present();
+          }
+        })
+      }
     })
   }
 
