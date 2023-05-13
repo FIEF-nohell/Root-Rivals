@@ -11,7 +11,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-button (click)="search_enemy()" expand="block" color="tertiary" shape="round" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+  <ion-button [disabled]="this.plant.health < 1" (click)="search_enemy()" expand="block" color="tertiary" shape="round" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
     Search Enemy
   </ion-button>
 
@@ -20,24 +20,24 @@
 <ion-content [fullscreen]="true" *ngIf="in_fight && !results"> <!-- Fight -->
 
   <ion-card style="width: 80%; margin: auto; margin-top: 15px;">
-    <ion-card-title class="ion-text-center">nohell's Plant</ion-card-title>
-    <img style="-webkit-filter: drop-shadow(2px 2px 2px #222); filter: drop-shadow(2px 2px 2px #222);" src="../../../assets/plant-icons/aloe_vera.png">
-    <ion-progress-bar style="width: 80%; position: relative; bottom: 20px; left: 50%; transform: translate(-50%)" [value]="0.2"></ion-progress-bar>
-    <ion-text class="ion-text-center" style="position: relative; bottom: 15px; margin: 0;"><p class="ion-text-center" style="margin: 0;">20/100</p></ion-text>
+    <ion-card-title class="ion-text-center">{{this.opponent.name}}</ion-card-title>
+    <img style="-webkit-filter: drop-shadow(2px 2px 2px #222); filter: drop-shadow(2px 2px 2px #222);" src="../../../assets/plant-icons/{{this.opponent.url}}.png">
+    <ion-progress-bar style="width: 80%; position: relative; bottom: 20px; left: 50%; transform: translate(-50%)" [value]="this.opponent.health * 0.01"></ion-progress-bar>
+    <ion-text class="ion-text-center" style="position: relative; bottom: 15px; margin: 0;"><p class="ion-text-center" style="margin: 0;">{{this.opponent.health}}/100</p></ion-text>
   </ion-card>
 
-  <ion-badge id="damage_enemy" style="position: absolute; top: 20%; left: 42.5%; opacity: 0" color="danger">-12 HP</ion-badge>
+  <ion-badge id="damage_enemy" style="position: absolute; top: 20%; left: 42.5%; opacity: 0" color="danger">-{{enemy_damage}} HP</ion-badge>
   <ion-badge id="block_enemy" style="position: absolute; top: 20%; left: 42.5%; opacity: 0" color="warning">Blocked</ion-badge>
 
   <ion-card style="width: 80%; margin: auto; margin-top: 15px;">
-    <ion-card-title class="ion-text-center">Maikeru's Plant</ion-card-title>
-    <img style="-webkit-filter: drop-shadow(2px 2px 2px #222); filter: drop-shadow(2px 2px 2px #222);" src="../../../assets/plant-icons/lavender.png">
-    <ion-progress-bar style="width: 80%; position: relative; bottom: 20px; left: 50%; transform: translate(-50%)" [value]="0.45"></ion-progress-bar>
-    <ion-text class="ion-text-center" style="position: relative; bottom: 15px; margin: 0;"><p class="ion-text-center" style="margin: 0;">45/100</p></ion-text>
+    <ion-card-title class="ion-text-center">{{this.plant.name}}</ion-card-title>
+    <img style="-webkit-filter: drop-shadow(2px 2px 2px #222); filter: drop-shadow(2px 2px 2px #222);" src="../../../assets/plant-icons/{{this.plant.url}}.png">
+    <ion-progress-bar style="width: 80%; position: relative; bottom: 20px; left: 50%; transform: translate(-50%)" [value]="this.plant.health * 0.01"></ion-progress-bar>
+    <ion-text class="ion-text-center" style="position: relative; bottom: 15px; margin: 0;"><p class="ion-text-center" style="margin: 0;">{{this.plant.health}}/100</p></ion-text>
   </ion-card>
 
-  <ion-badge id="damage_self" style="position: absolute; top: 67%; left: 42.5%; opacity: 0" color="danger">-12 HP</ion-badge>
-  <ion-badge id="damage_enemy" style="position: absolute; top: 67%; left: 42.5%; opacity: 0" color="warning">Blocked</ion-badge>
+  <ion-badge id="damage_self" style="position: absolute; top: 67%; left: 42.5%; opacity: 0" color="danger">-{{self_damage}} HP</ion-badge>
+  <ion-badge id="block_self" style="position: absolute; top: 67%; left: 42.5%; opacity: 0" color="warning">Blocked</ion-badge>
 
 </ion-content>
 
@@ -45,7 +45,8 @@
   <ion-card style="position: relative; top: 50%; transform: translateY(-50%)">
     <ion-card-header>
       <ion-card-subtitle>+50 XP</ion-card-subtitle>
-      <ion-card-title>Congratulations</ion-card-title>
+      <ion-card-title *ngIf="this.win">Congratulations</ion-card-title>
+      <ion-card-title *ngIf="!this.win">Unlucky</ion-card-title>
     </ion-card-header>
     <ion-card-content>    
       <ion-progress-bar [buffer]="0.7" [value]="0.5"></ion-progress-bar>

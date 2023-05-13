@@ -46,7 +46,7 @@ export class PlantService {
     try {
       const user = await this.afAuth.currentUser;
       let totalTimeframe = 300
-      let atck = 10
+      let atck = 11
       let def = 5
       switch (type) {
         case "Desert":
@@ -109,7 +109,7 @@ export class PlantService {
     }
   }
 
-  async setStatus() {
+  async setStatus(status: boolean) {
       try {
         await this.afAuth.user.subscribe(async user => {
           if (user) {
@@ -118,7 +118,7 @@ export class PlantService {
                 let plantId = raul.id
                 await this.db.collection("plants").doc(plantId).update(
                   {
-                    attackable: true
+                    attackable: status
                   }
                 )
               });
@@ -266,11 +266,13 @@ export class PlantService {
             xp = xp - 100
             lvl = lvl + 1
           }
+          let newHealth = givenPlant.health + 20
+          if(newHealth > 100) newHealth = 100
           await this.db.collection("plants").doc(plantId).update(
             {
               water: 100,
               lastWatered: Date.now(),
-              health: 100,
+              health: newHealth,
               experience: xp,
               level: lvl,
             }

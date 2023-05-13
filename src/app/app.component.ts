@@ -10,6 +10,6 @@ import { PlantService } from './services/plant.service';
 export class AppComponent {
   constructor(private AuthService: AuthService, private plantService: PlantService) {
     this.AuthService.getUid();
-    this.plantService.setStatus();
+    this.plantService.setStatus(true);
   }
 }
