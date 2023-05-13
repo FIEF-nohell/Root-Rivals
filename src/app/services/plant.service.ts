@@ -215,11 +215,23 @@ export class PlantService {
     let plantHealth = this.plant.health;
     let KD = this.plant.wins / this.plant.losses;
 
-    let userScore = (plantLevel * 0.45 + plantXP * 0.05 + plantHealth * 0.25 + KD * 0.25)
+    console.log(plantLevel)
+    console.log(plantXP)
+    console.log(plantHealth)
+    console.log(KD)
 
-    this.db.collection("users").doc(this.auth.uid).update({
-      plantScore: userScore,
-    })
+    let userScore = (plantLevel * 0.45 + plantXP * 0.05 + plantHealth * 0.25 + KD * 0.25).toFixed(2)
+    let fief: number = +userScore
+
+    console.log("score: " + userScore)
+
+    this.db.collection("plants").ref.where("uid", "==", this.auth.uid).get().then((docs: any) => {
+      docs.forEach((doc: any) => {
+        this.db.collection("plants").doc(doc.id).update({
+          plantScore: fief,
+        })
+      });
+    }) 
   }
 
   async hasPlant(){

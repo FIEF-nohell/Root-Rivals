@@ -183,7 +183,7 @@ export class FightPage implements OnInit, ViewWillEnter {
           "attackable": false
         }
         this.plantService.updateUserByUID(this.plant.uid, newobj)
-
+        this.plantService.getUserPlant()
         await this.delay(500)
         this.in_fight = false;
         this.win = true;
