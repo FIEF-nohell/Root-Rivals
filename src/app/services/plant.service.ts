@@ -77,7 +77,7 @@ export class PlantService {
         losses: 0,
         health: 100,
         waterInterval: totalTimeframe,
-        perfectTimeframe: [totalTimeframe*0.2, totalTimeframe*0.4],
+        perfectTimeframe: [totalTimeframe*0.1, totalTimeframe*0.2],
         canBeWatered: false,
         needsWater: false,
         attackable: true,
