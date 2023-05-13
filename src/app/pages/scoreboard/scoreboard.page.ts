@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StatsService } from 'src/app/services/stats.service';
 
 @Component({
   selector: 'app-scoreboard',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScoreboardPage implements OnInit {
 
-  constructor() { }
+  constructor(private statsService: StatsService) { }
 
   ngOnInit() {
+    this.statsService.loadScoreboard()
   }
 
 }
