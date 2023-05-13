@@ -46,18 +46,18 @@ export class PlantService {
     try {
       const user = await this.afAuth.currentUser;
       let totalTimeframe = 300
-      let atck = 11
-      let def = 5
+      let atck = 15
+      let def = 8
       switch (type) {
         case "Desert":
           totalTimeframe = totalTimeframe * 1.5
-          atck = 10
-          def = 8
+          atck = 13
+          def = 12
           break
         case "Tropical":
           totalTimeframe = totalTimeframe * 0.5
-          atck = 12
-          def = 3
+          atck = 17
+          def = 5
           break
       }
       const newPlant: Plant = {
