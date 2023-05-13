@@ -7,12 +7,37 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">plant</ion-title>
+      <ion-title size="large">Your Plant</ion-title>
     </ion-toolbar>
   </ion-header>
-  <h2 (click)="logout()">logout</h2>
+
+  <ion-card style="width: 80%; margin: auto; margin-top: 15px;">
+    <img style="-webkit-filter: drop-shadow(2px 2px 2px #222); filter: drop-shadow(2px 2px 2px #222);" src="../../../assets/plant-icons/{{plantLel?.url}}.png">
+  </ion-card>
+  
+  <ion-progress-bar style="width: 80%; margin: auto; margin-top: 25px;" [value]="progress"></ion-progress-bar>
+
+  <ion-grid style="width: 90%;">
+    <ion-row>
+      <ion-col size="6"> <!-- Damage, Block, KD -->
+        <ion-card>
+          fief
+        </ion-card>
+      </ion-col>
+      <ion-col size="6"> <!-- Active Since, Last Drought, Level -->
+        <ion-card>
+          fief
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- <h2 (click)="logout()">logout</h2>
+  <h2 (click)="createPlant()">create plant</h2>
+  <h2 (click)="createDesertPlant()">create desert plant</h2>
+  <h2 (click)="createTropicalPlant()">create tropical plant</h2>
   <ion-button [disabled]="this.canBeWatered==false" (click)="waterPlant()" expand="block" shape="round">
     Water Plant
   </ion-button>
-  <h2 (click)="stats()">get user stats</h2>
+  <h2 (click)="stats()">get user stats</h2> -->
 </ion-content>

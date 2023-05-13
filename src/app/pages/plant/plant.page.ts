@@ -15,11 +15,14 @@ export class PlantPage implements OnInit {
   needsWater = false
   plantLel: any;
 
+  public progress = 0.7;
+
   ngOnInit() {
-    this.plantCheck()
-    this.plantService.getUserPlantObservable().subscribe((plant) => {
+    this.plantCheck() // Check if user has Plant
+
+    this.plantService.getUserPlantObservable().subscribe((plant) => { // Check if can be watered
       if (plant && plant.canBeWatered !== undefined) {
-        this.plantLel = plant;
+        this.plantLel = plant; 
         this.canBeWatered = plant.canBeWatered;
         this.needsWater = plant.needsWater;
       }
