@@ -274,7 +274,7 @@ export class PlantService {
             xp = xp - 100
             lvl = lvl + 1
           }
-          let newHealth = givenPlant.health + 20
+          let newHealth = 100
           if(newHealth > 100) newHealth = 100
           await this.db.collection("plants").doc(plantId).update(
             {
