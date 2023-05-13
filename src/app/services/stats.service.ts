@@ -13,11 +13,25 @@ export class StatsService {
 
   constructor(private modalController: ModalController, private afAuth: AngularFireAuth, private auth: AuthService, private db: AngularFirestore, private alertController: AlertController) { }
 
+  public statsEntries$ = new BehaviorSubject<any>({});
+
   async loadScoreboard() {
     let allPlants = this.db.collection('plants').ref.orderBy("plantScore", "desc").get().then((data: any) => {
         data.forEach((element: any) => {
+          //this.statsEntries.push(element)
         });
       });
+  }
+
+  observableScoreboard(): Observable<any> {
+    return new Observable<any | null>((observer: { next: (arg0: null) => void; complete: () => void; }) => {
+      let allPlants = this.db.collection('plants').ref.orderBy("plantScore", "desc").get().then((data: any) => {
+        data.forEach((element: any) => {
+          this.statsEntries$.next(element)
+        });
+        observer.complete();
+      });
+    });
   }
 
 }

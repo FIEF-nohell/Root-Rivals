@@ -11,7 +11,15 @@ export class ScoreboardPage implements OnInit {
   constructor(private statsService: StatsService) { }
 
   ngOnInit() {
-    this.statsService.loadScoreboard()
+    this.getObs()
+  }
+
+  getObs(){
+    this.statsService.observableScoreboard().subscribe((list) => {
+      list.forEach((element: any) => {
+        console.log(element)
+      });
+    })
   }
 
 }
