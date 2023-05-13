@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ViewWillEnter } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { FightService } from 'src/app/services/fight.service';
 import { PlantService } from 'src/app/services/plant.service'; 
@@ -8,7 +9,7 @@ import { PlantService } from 'src/app/services/plant.service';
   templateUrl: './plant.page.html',
   styleUrls: ['./plant.page.scss'],
 })
-export class PlantPage implements OnInit {
+export class PlantPage implements OnInit, ViewWillEnter {
 
   constructor(private auth: AuthService, private plantService: PlantService, private fightService: FightService) {}
 
@@ -18,7 +19,23 @@ export class PlantPage implements OnInit {
 
   public progress = 0;
 
-  ngOnInit() {
+  ionViewWillEnter() {
+    let plantTemp: any
+    this.plantService.getUserPlantObservable().subscribe((plant) => { // Check if can be watered
+      if (plant && plant.canBeWatered !== undefined) {
+        plantTemp = plant;  
+
+        let updatedPlantLel = { 
+          ...this.plantLel,
+          health: plantTemp.health 
+        };
+
+        this.plantLel = updatedPlantLel
+      }
+    });
+  }
+
+  ngOnInit() { 
     this.plantCheck() // Check if user has Plant
 
     this.plantService.getUserPlantObservable().subscribe((plant) => { // Check if can be watered

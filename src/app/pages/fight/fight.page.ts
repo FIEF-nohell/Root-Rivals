@@ -1,6 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ViewWillEnter } from '@ionic/angular';
 import { FightService } from 'src/app/services/fight.service';
 import { PlantService } from 'src/app/services/plant.service';
 
@@ -9,7 +10,7 @@ import { PlantService } from 'src/app/services/plant.service';
   templateUrl: './fight.page.html',
   styleUrls: ['./fight.page.scss'],
 })
-export class FightPage implements OnInit {
+export class FightPage implements OnInit, ViewWillEnter {
 
   in_fight: boolean = false;
   results: boolean = false;
@@ -22,6 +23,22 @@ export class FightPage implements OnInit {
   enemy_damage = 0;
   self_damage = 0;
   setXP = 50;
+
+  ionViewWillEnter() {
+    let plantTemp: any
+    this.plantService.getUserPlantObservable().subscribe((plant) => { // Check if can be watered
+      if (plant && plant.canBeWatered !== undefined) {
+        plantTemp = plant;  
+
+        let updatedPlantLel = { 
+          ...this.plant,
+          health: plantTemp.health 
+        };
+
+        this.plant = updatedPlantLel
+      }
+    });
+  }
   
   ngOnInit() {
     this.plantService.getUserPlantObservable().subscribe((plant) => {
@@ -190,7 +207,7 @@ export class FightPage implements OnInit {
 
   reset_combat() {
     this.results = false;
-    this.router.navigate(["/tabs/plant"], {replaceUrl:true})
+    this.router.navigate(["/tabs/plant"])
   }
  
 }
