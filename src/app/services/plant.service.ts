@@ -202,11 +202,7 @@ export class PlantService {
         });
       } catch (error) {
       console.error('Error while updating plant:', error)
-    }
-
-      // DEBUG
-      console.log(Math.floor(minutesBar))
-      console.log(waterLevel.toFixed(2) + "%")
+      }
     }
   }
 
@@ -217,12 +213,6 @@ export class PlantService {
     let KD = this.plant.wins / this.plant.losses;
 
     let userScore = (plantLevel * 0.45 + plantXP * 0.05 + plantHealth * 0.25 + KD * 0.25)
-
-    console.log("User Score: " + userScore)
-    console.log("plantLevel: " + plantLevel)
-    console.log("plantXP: " + plantXP)
-    console.log("plantHealth: " + plantHealth)
-    console.log("KD: " + KD)
 
     this.db.collection("users").doc(this.auth.uid).update({
       plantScore: userScore,
