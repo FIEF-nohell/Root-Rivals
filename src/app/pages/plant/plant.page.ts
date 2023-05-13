@@ -32,7 +32,7 @@ export class PlantPage implements OnInit {
   }
 
   async plantCheck(){
-    //this.plantService.hasPlant()
+    this.plantService.hasPlant()
   }
 
   waterPlant() {
