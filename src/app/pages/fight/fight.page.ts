@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FightService } from 'src/app/services/fight.service';
 import { PlantService } from 'src/app/services/plant.service';
 
@@ -14,7 +15,7 @@ export class FightPage implements OnInit {
   results: boolean = false;
   win: boolean = false;
 
-  constructor(private fightService: FightService, private plantService: PlantService) { } 
+  constructor(private fightService: FightService, private plantService: PlantService, private router: Router) { } 
 
   opponent: any = [];
   plant: any = [];
@@ -151,7 +152,7 @@ export class FightPage implements OnInit {
           "experience": xp,
           "level": lvl,
           "wins": wins + 1,
-          "health": 100,
+          "health": this.plant.health,
           "attackable": false
         }
         this.plantService.updateUserByUID(this.plant.uid, newobj)
@@ -188,8 +189,8 @@ export class FightPage implements OnInit {
   }
 
   reset_combat() {
-    //UPDATE KD
     this.results = false;
+    this.router.navigate(["/tabs/plant"], {replaceUrl:true})
   }
  
 }
