@@ -26,14 +26,14 @@
         </ion-col>
       </ion-row>
       <ion-row class="usernames">
-        <ion-col size="4">GigaNut</ion-col>
-        <ion-col size="4" class="first_place">Maikeru</ion-col>
-        <ion-col size="4">AntiChad</ion-col>
+        <ion-col size="4">{{this.leaderboard[1].owner}}</ion-col>
+        <ion-col size="4" class="first_place">{{this.leaderboard[0].owner}}</ion-col>
+        <ion-col size="4">{{this.leaderboard[2].owner}}</ion-col>
       </ion-row>
       <ion-row class="scores">
-        <ion-col size="4">13284</ion-col>
-        <ion-col size="4" class="first_place">15872</ion-col>
-        <ion-col size="4">13094</ion-col>
+        <ion-col size="4">{{this.leaderboard[1].plantScore}}</ion-col>
+        <ion-col size="4" class="first_place">{{this.leaderboard[0].plantScore}}</ion-col>
+        <ion-col size="4">{{this.leaderboard[2].plantScore}}</ion-col>
       </ion-row>
     </ion-grid>
   

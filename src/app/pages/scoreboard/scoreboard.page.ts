@@ -14,11 +14,12 @@ export class ScoreboardPage implements OnInit {
     this.getObs()
   }
 
+  leaderboard: any = []
+
   getObs(){
     this.statsService.observableScoreboard().subscribe((list) => {
-      console.log("list: ")
       list.forEach((element: any) => {
-        console.log(element.data())
+        this.leaderboard.push(element.data())
       });
     })
   }
