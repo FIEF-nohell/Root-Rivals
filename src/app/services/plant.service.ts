@@ -18,6 +18,7 @@ interface Plant {
   damage: number;
   experience: number;           // 0 - 100, scales up
   wins: number;
+  url: string,
   losses: number;
   plantType: string;            // Desert, Tropical, Mediteran
   health: number;               // 0 - 100
@@ -40,7 +41,7 @@ export class PlantService {
   public canBeWatered$ = new BehaviorSubject<boolean>(false);
   public needsWater$ = new BehaviorSubject<boolean>(false);
 
-  async createPlant(type: string = "Mediteran") {
+  async createPlant(type: string = "Mediteran", url: string) {
     try {
       const user = await this.afAuth.currentUser;
       let totalTimeframe = 300
@@ -69,6 +70,7 @@ export class PlantService {
         defense: def,
         plantType: type,
         damage: atck,
+        url: url,
         experience: 0,
         wins: 0,
         losses: 0,
