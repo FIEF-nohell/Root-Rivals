@@ -25,26 +25,7 @@ export class FightService {
   const randomIndex = Math.floor(Math.random() * items.length);
   return items[randomIndex];
 }
-/* 
-  async getRandomOpponent() {
-    try {
-      this.opponents = []
-      await this.afAuth.user.subscribe(async user => {
-        if (user) {
-          await this.db.collection('plants').ref.where("uid", "!=", user?.uid).get().then((data: any) => {
-            data.forEach(async (raul: any) => {
-              if(raul.data().attackable == true) this.opponents.push(raul.data())
-            });
-          });
-          this.opponent = this.getRandomItem(this.opponents);
-          return this.opponent
-        }
-      });
-    } catch (error) {
-      console.error('Error while updating plant:', error)
-    }
-  }
- */
+
   getOpponentObservable(): Observable<any | null> {
     return new Observable<any | null>((observer: { next: (arg0: null) => void; complete: () => void; }) => {
       this.afAuth.user.subscribe(async user => {
