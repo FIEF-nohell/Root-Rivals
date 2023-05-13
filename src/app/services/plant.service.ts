@@ -109,8 +109,11 @@ export class PlantService {
     }
   }
 
-  async updateUserByUID(uid: string, data: any) {
-    
+  async updateUserByUID(uid: string, inputdata: any) {
+    this.db.collection('users').ref.where("uid", "==", uid).get().then((data: any) => {
+      data.forEach(async (userObject: any) => {
+          await this.db.collection("plants").doc(userObject.data().plantId).update(inputdata)});
+    });
   }
 
   async setStatus(status: boolean) {
