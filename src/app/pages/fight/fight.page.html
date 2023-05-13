@@ -16,7 +16,7 @@
       Search Enemy
     </ion-button>
     <ion-text class="ion-text-center">
-      <p>Your HP: 90</p>
+      <p>Your HP: {{ this.plant.health }}</p>
     </ion-text>
   </ion-card>
 
@@ -28,21 +28,21 @@
     <ion-card-title class="ion-text-center">{{this.opponent.name}}</ion-card-title>
     <img style="-webkit-filter: drop-shadow(2px 2px 2px #222); filter: drop-shadow(2px 2px 2px #222);" src="../../../assets/plant-icons/{{this.opponent.url}}.png">
     <ion-progress-bar style="width: 80%; position: relative; bottom: 20px; left: 50%; transform: translate(-50%)" [value]="this.opponent.health * 0.01"></ion-progress-bar>
-    <ion-text class="ion-text-center" style="position: relative; bottom: 15px; margin: 0;"><p class="ion-text-center" style="margin: 0;">{{this.opponent.health}}/100</p></ion-text>
+    <ion-text class="ion-text-center" style="position: relative; bottom: 15px; margin: 0;"><p class="ion-text-center" style="margin: 0;">{{this.opponent.health.toFixed(1)}}/100.0</p></ion-text>
   </ion-card>
 
-  <ion-badge  id="damage_enemy" style="position: absolute; top: 20%; left: 42.5%; opacity: 0" color="danger">-{{enemy_damage}} HP</ion-badge>
-  <ion-badge  id="block_enemy" style="position: absolute; top: 20%; left: 42.5%; opacity: 0" color="warning">Blocked</ion-badge>
+  <ion-badge  id="damage_enemy" style="position: absolute; top: 20%; left: 36.5%; opacity: 0" color="danger">-{{enemy_damage}} HP</ion-badge>
+  <ion-badge  id="block_enemy" style="position: absolute; top: 20%; left: 36.5%; opacity: 0" color="warning">Blocked</ion-badge>
 
   <ion-card style="width: 80%; margin: auto; margin-top: 15px;">
     <ion-card-title class="ion-text-center">{{this.plant.name}}</ion-card-title>
     <img style="-webkit-filter: drop-shadow(2px 2px 2px #222); filter: drop-shadow(2px 2px 2px #222);" src="../../../assets/plant-icons/{{this.plant.url}}.png">
     <ion-progress-bar style="width: 80%; position: relative; bottom: 20px; left: 50%; transform: translate(-50%)" [value]="this.plant.health * 0.01"></ion-progress-bar>
-    <ion-text class="ion-text-center" style="position: relative; bottom: 15px; margin: 0;"><p class="ion-text-center" style="margin: 0;">{{this.plant.health}}/100</p></ion-text>
+    <ion-text class="ion-text-center" style="position: relative; bottom: 15px; margin: 0;"><p class="ion-text-center" style="margin: 0;">{{this.plant.health.toFixed(1)}}/100.0</p></ion-text>
   </ion-card>
 
-  <ion-badge  id="damage_self" style="position: absolute; top: 67%; left: 42.5%; opacity: 0" color="danger">-{{self_damage}} HP</ion-badge>
-  <ion-badge  id="block_self" style="position: absolute; top: 67%; left: 42.5%; opacity: 0" color="warning">Blocked</ion-badge>
+  <ion-badge  id="damage_self" style="position: absolute; top: 67%; left: 36.5%; opacity: 0" color="danger">-{{self_damage}} HP</ion-badge>
+  <ion-badge  id="block_self" style="position: absolute; top: 67%; left: 36.5%; opacity: 0" color="warning">Blocked</ion-badge>
 
 </ion-content>
 

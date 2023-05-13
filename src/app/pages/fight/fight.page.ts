@@ -23,7 +23,9 @@ export class FightPage implements OnInit {
   setXP = 50;
   
   ngOnInit() {
-
+    this.plantService.getUserPlantObservable().subscribe((plant) => {
+      this.plant = plant;
+    })
     //this.fadeInOutBadge(document.getElementById('block_self')!, 1.5); //Example Visualizing attack
   }
   
@@ -45,8 +47,8 @@ export class FightPage implements OnInit {
           if (plant !== undefined) {
             this.opponent = opponent;
             this.plant = plant;
-            this.enemy_damage = this.opponent.damage;
-            this.self_damage = this.plant.damage;
+            this.enemy_damage = (this.opponent.damage + (this.opponent.level * ((this.opponent.damage / 100) * 3))).toFixed(1);
+            this.self_damage = (this.plant.damage + (this.plant.level * ((this.plant.damage / 100) * 3))).toFixed(1);
             console.log(this.opponent)
             console.log(this.plant)
             this.start_fight()
@@ -135,7 +137,6 @@ export class FightPage implements OnInit {
           "experience": xp,
           "level": lvl,
           "losses": losses + 1,
-          "health": 0,
         }
         this.plantService.updateUserByUID(this.opponent.uid, obj)
 
@@ -179,7 +180,7 @@ export class FightPage implements OnInit {
         break
     }
     if (block == false) {
-      defender.health -= attacker.damage 
+      defender.health -= (attacker.damage + (attacker.level * ((attacker.damage / 100) * 3))).toFixed(1)
       this.fadeInOutBadge(defender.dmgBadge!, 1.5); 
     } else {
       this.fadeInOutBadge(defender.blkBadge!, 1.5);
