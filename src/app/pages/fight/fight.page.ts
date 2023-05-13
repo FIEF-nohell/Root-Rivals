@@ -68,8 +68,6 @@ export class FightPage implements OnInit, ViewWillEnter {
             this.plant = plant;
             this.enemy_damage = (this.plant.damage + (this.plant.level * ((this.plant.damage / 100) * 3))).toFixed(1);
             this.self_damage = (this.opponent.damage + (this.opponent.level * ((this.opponent.damage / 100) * 3))).toFixed(1);
-            console.log(this.opponent)
-            console.log(this.plant)
             this.start_fight()
         }
         else{
@@ -99,8 +97,6 @@ export class FightPage implements OnInit, ViewWillEnter {
     this.plant.dmgBadge = document.getElementById('damage_self'); 
     this.plant.blkBadge = document.getElementById('block_self'); 
 
-    console.log(this.plant, this.opponent)
-
     for (let x = 0; x < x+1; x++) {
       await this.delay(500)
       if (x % 2 == 0) {
@@ -125,8 +121,6 @@ export class FightPage implements OnInit, ViewWillEnter {
           "losses": losses + 1,
           "health": 0,
         }
-        console.log("opp id: " + this.opponent.uid)
-        console.log("plant id: " + this.plant.uid)
         this.plantService.updateUserByUID(this.plant.uid, obj)
 
         xp = this.opponent.experience + this.setXP/2
@@ -187,7 +181,6 @@ export class FightPage implements OnInit, ViewWillEnter {
         await this.delay(500)
         this.in_fight = false;
         this.win = true;
-        console.log((this.plant.experience * 0.01) + (this.setXP * 0.01))
         this.results = true;
         break;
       }

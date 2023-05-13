@@ -16,7 +16,6 @@ export class StatsService {
   async loadScoreboard() {
     let allPlants = this.db.collection('plants').ref.orderBy("plantScore", "desc").get().then((data: any) => {
         data.forEach((element: any) => {
-          console.log(element.data())  
         });
       });
   }
