@@ -23,21 +23,21 @@
     Water Plant
   </ion-button>
 
-  <ion-grid style="width: 90%; margin-top: 10px;">
+  <ion-grid style="width: 95%; margin-top: 10px;">
     <ion-row>
       <ion-col size="6"> <!-- Damage, Block, KD -->
         <ion-card style="margin-right: 0;">
           <ion-item lines="none">
-            <ion-icon id="click-damage" slot="start" src="assets/tab-icons/fight.svg"></ion-icon>
-            <ion-label>{{ plantLel?.damage }}</ion-label>
+            <ion-icon style="margin-right: 4px;" id="click-damage" slot="start" src="assets/tab-icons/fight.svg"></ion-icon>
+            <ion-label style="margin-right: 4px;" class="ion-text-wrap ion-text-center">{{ plantLel?.damage }} (+ {{ (plantLel?.level * ((plantLel?.damage / 100) * 3)).toFixed(1) }})</ion-label>
           </ion-item>
           <ion-item lines="none">
             <ion-icon id="click-defense" slot="start" src="assets/icon/shield.svg"></ion-icon>
-            <ion-label>{{ plantLel?.defense }}</ion-label>
+            <ion-label class="ion-text-center">{{ plantLel?.defense }}</ion-label>
           </ion-item>
           <ion-item lines="none">
             <ion-icon id="click-kd" slot="start" src="assets/icon/skull.svg"></ion-icon>
-            <ion-label>{{ (plantLel?.wins/plantLel?.losses).toFixed(1) }}</ion-label>
+            <ion-label class="ion-text-center">{{ (plantLel?.wins/plantLel?.losses).toFixed(1) }}</ion-label>
           </ion-item>
         </ion-card>
       </ion-col>
@@ -45,15 +45,15 @@
         <ion-card style="margin-left: 0;">
           <ion-item lines="none">
             <ion-icon id="click-level" slot="start" src="assets/icon/level.svg"></ion-icon>
-            <ion-label>{{ plantLel?.level }}</ion-label>
+            <ion-label class="ion-text-center">{{ plantLel?.level }}</ion-label>
           </ion-item>
           <ion-item lines="none">
             <ion-icon id="click-hp" slot="start" src="assets/icon/hp.svg"></ion-icon>
-            <ion-label>{{ (plantLel?.health) }}</ion-label>
+            <ion-label class="ion-text-center">{{ (plantLel?.health) }}</ion-label>
           </ion-item>
           <ion-item lines="none">
             <ion-icon id="click-alive" slot="start" src="assets/icon/alive.svg"></ion-icon>
-            <ion-label class="ion-text-wrap">{{ plantLel?.born | timeAgo }}</ion-label>
+            <ion-label class="ion-text-wrap ion-text-center">{{ plantLel?.born | timeAgo }}</ion-label>
           </ion-item>
         </ion-card>
       </ion-col>

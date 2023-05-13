@@ -42,8 +42,11 @@ export class PlantPage implements OnInit {
     this.plantService.hasPlant()
   }
 
-  waterPlant() {
+  async waterPlant() {
     this.plantService.waterPlant(this.plantLel);
+    this.plantLel.water = 100
+    this.plantService.plant.currentWaterLevel = 100;
+    this.plantService.plant.canBeWatered = false;
   }
 
   stats() {
