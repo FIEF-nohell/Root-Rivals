@@ -25,15 +25,15 @@
         <ion-card>
           <ion-item>
             <ion-icon slot="start" src="assets/tab-icons/fight.svg"></ion-icon>
-            <ion-label>{{ plantLel.damage }}</ion-label>
+            <ion-label>{{ plantLel?.damage }}</ion-label>
           </ion-item>
           <ion-item>
             <ion-icon slot="start" src="assets/icon/shield.svg"></ion-icon>
-            <ion-label>{{ plantLel.defense }}</ion-label>
+            <ion-label>{{ plantLel?.defense }}</ion-label>
           </ion-item>
           <ion-item>
             <ion-icon slot="start" src="assets/icon/skull.svg"></ion-icon>
-            <ion-label>{{ (plantLel.wins/plantLel.losses).toFixed(1) }}</ion-label>
+            <ion-label>{{ (plantLel?.wins/plantLel?.losses).toFixed(1) }}</ion-label>
           </ion-item>
         </ion-card>
       </ion-col>
