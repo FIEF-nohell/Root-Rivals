@@ -109,6 +109,10 @@ export class PlantService {
     }
   }
 
+  async updateUserByUID(uid: string, data: any) {
+    
+  }
+
   async setStatus(status: boolean) {
       try {
         await this.afAuth.user.subscribe(async user => {
