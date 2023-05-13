@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { PlantService } from 'src/app/services/plant.service';
+import { PlantService } from 'src/app/services/plant.service'; 
 
 @Component({
   selector: 'app-plant',
@@ -25,7 +25,7 @@ export class PlantPage implements OnInit {
         this.plantLel = plant; 
         this.canBeWatered = plant.canBeWatered;
         this.needsWater = plant.needsWater;
-        this.progress = this.plantLel.water * 0.01 
+        this.progress = this.plantLel.water * 0.01  
       }
     });
   }

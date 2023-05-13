@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PlantPageRoutingModule } from './plant-routing.module';
 
 import { PlantPage } from './plant.page';
+import { TimeAgoPipe } from 'src/app/pipes/time-ago.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { PlantPage } from './plant.page';
     IonicModule,
     PlantPageRoutingModule, 
   ],
-  declarations: [PlantPage]
+  declarations: [PlantPage, TimeAgoPipe]
 })
 export class PlantPageModule {}

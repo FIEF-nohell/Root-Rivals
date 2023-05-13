@@ -7,7 +7,7 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Your Plant</ion-title>
+      <ion-title size="large">{{ plantLel?.name }}</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -19,27 +19,42 @@
 
   <ion-label class="ion-text-center" style="position: absolute; left: 50%; transform: translate(-50%); margin-top: 5px;">{{ this.plantLel?.water }}%</ion-label>
 
+  <ion-button style="margin-top: 35px; margin-left: 35px; margin-right: 35px;" [disabled]="this.canBeWatered==false" (click)="waterPlant()" expand="block" shape="round">
+    Water Plant
+  </ion-button>
+
   <ion-grid style="width: 90%; margin-top: 10px;">
     <ion-row>
       <ion-col size="6"> <!-- Damage, Block, KD -->
-        <ion-card>
-          <ion-item>
+        <ion-card style="margin-right: 0;">
+          <ion-item lines="none">
             <ion-icon slot="start" src="assets/tab-icons/fight.svg"></ion-icon>
             <ion-label>{{ plantLel?.damage }}</ion-label>
           </ion-item>
-          <ion-item>
+          <ion-item lines="none">
             <ion-icon slot="start" src="assets/icon/shield.svg"></ion-icon>
             <ion-label>{{ plantLel?.defense }}</ion-label>
           </ion-item>
-          <ion-item>
+          <ion-item lines="none">
             <ion-icon slot="start" src="assets/icon/skull.svg"></ion-icon>
             <ion-label>{{ (plantLel?.wins/plantLel?.losses).toFixed(1) }}</ion-label>
           </ion-item>
         </ion-card>
       </ion-col>
       <ion-col size="6"> <!-- Active Since, Last Drought, Level -->
-        <ion-card>
-          fief
+        <ion-card style="margin-left: 0;">
+          <ion-item lines="none">
+            <ion-icon id="click-level" slot="start" src="assets/icon/level.svg"></ion-icon>
+            <ion-label>{{ plantLel?.level }}</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-icon id="click-alive" slot="start" src="assets/icon/alive.svg"></ion-icon>
+            <ion-label>{{ plantLel?.born | timeAgo }}</ion-label>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-icon id="click-drought" slot="start" src="assets/icon/drought.svg"></ion-icon>
+            <ion-label>{{ (plantLel?.lastDrought | timeAgo) || "Never" }}</ion-label>
+          </ion-item>
         </ion-card>
       </ion-col>
     </ion-row>
@@ -53,4 +68,21 @@
     Water Plant
   </ion-button>
   <h2 (click)="stats()">get user stats</h2> -->
+  <ion-popover trigger="click-level" triggerAction="click">
+    <ng-template> 
+      <ion-content class="ion-padding ion-text-center">Level</ion-content>
+    </ng-template>
+  </ion-popover>
+
+  <ion-popover trigger="click-alive" triggerAction="click">
+    <ng-template> 
+      <ion-content class="ion-padding ion-text-center">Alive since</ion-content>
+    </ng-template>
+  </ion-popover>
+
+  <ion-popover trigger="click-drought" triggerAction="click">
+    <ng-template> 
+      <ion-content class="ion-padding ion-text-center">Last Drought</ion-content>
+    </ng-template>
+  </ion-popover>
 </ion-content>
