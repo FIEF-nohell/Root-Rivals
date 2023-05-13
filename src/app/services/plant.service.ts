@@ -235,6 +235,12 @@ export class PlantService {
   }
 
   async waterPlant(givenPlant: any) {
+
+    this.plant.currentWaterLevel = 100;
+    this.plant.water = 100;
+    this.plant.canBeWatered = false;
+    this.plant.lastWatered = new Date();
+
     if (givenPlant.needsWater == true) {
       this.db.collection('plants').ref.where("uid", "==", this.auth.uid).get().then((data: any) => {
         data.forEach(async (raul: any) => {
