@@ -28,15 +28,15 @@
       <ion-col size="6"> <!-- Damage, Block, KD -->
         <ion-card style="margin-right: 0;">
           <ion-item lines="none">
-            <ion-icon slot="start" src="assets/tab-icons/fight.svg"></ion-icon>
+            <ion-icon id="click-damage" slot="start" src="assets/tab-icons/fight.svg"></ion-icon>
             <ion-label>{{ plantLel?.damage }}</ion-label>
           </ion-item>
           <ion-item lines="none">
-            <ion-icon slot="start" src="assets/icon/shield.svg"></ion-icon>
+            <ion-icon id="click-defense" slot="start" src="assets/icon/shield.svg"></ion-icon>
             <ion-label>{{ plantLel?.defense }}</ion-label>
           </ion-item>
           <ion-item lines="none">
-            <ion-icon slot="start" src="assets/icon/skull.svg"></ion-icon>
+            <ion-icon id="click-kd" slot="start" src="assets/icon/skull.svg"></ion-icon>
             <ion-label>{{ (plantLel?.wins/plantLel?.losses).toFixed(1) }}</ion-label>
           </ion-item>
         </ion-card>
@@ -68,6 +68,24 @@
     Water Plant
   </ion-button>
   <h2 (click)="stats()">get user stats</h2> -->
+  <ion-popover trigger="click-damage" triggerAction="click">
+    <ng-template> 
+      <ion-content class="ion-padding ion-text-center">Damage</ion-content>
+    </ng-template>
+  </ion-popover>
+
+  <ion-popover trigger="click-defense" triggerAction="click">
+    <ng-template> 
+      <ion-content class="ion-padding ion-text-center">Defense</ion-content>
+    </ng-template>
+  </ion-popover>
+
+  <ion-popover trigger="click-kd" triggerAction="click">
+    <ng-template> 
+      <ion-content class="ion-padding ion-text-center">KD</ion-content>
+    </ng-template>
+  </ion-popover> 
+
   <ion-popover trigger="click-level" triggerAction="click">
     <ng-template> 
       <ion-content class="ion-padding ion-text-center">Level</ion-content>

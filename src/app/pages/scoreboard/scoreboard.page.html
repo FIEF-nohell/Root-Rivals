@@ -7,13 +7,58 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Scoreboard</ion-title>
+      <ion-title class="ion-text-wrap" size="large">Scoreboard</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-list>
-    <ion-item>
-      <ion-label>Awesome Label</ion-label>
-    </ion-item>
-  </ion-list>
+    <ion-grid fixed class="ion-text-center">
+      <ion-row class="placements">
+        <ion-col size="4" class="lower_numbers">2</ion-col>
+        <ion-col size="4">1</ion-col>
+        <ion-col size="4" class="lower_numbers">3</ion-col>
+      </ion-row>
+      <ion-row class="images">
+        <ion-col size="4">
+        </ion-col>
+        <ion-col size="4">
+        </ion-col>
+        <ion-col size="4">
+        </ion-col>
+      </ion-row>
+      <ion-row class="usernames">
+        <ion-col size="4">GigaNut</ion-col>
+        <ion-col size="4" class="first_place">Maikeru</ion-col>
+        <ion-col size="4">AntiChad</ion-col>
+      </ion-row>
+      <ion-row class="scores">
+        <ion-col size="4">13284</ion-col>
+        <ion-col size="4" class="first_place">15872</ion-col>
+        <ion-col size="4">13094</ion-col>
+      </ion-row>
+    </ion-grid>
+  
+    <ion-list>
+      <ion-item lines="none">
+        <ion-text class="placement">4</ion-text>
+        <div>
+          <ion-label class="username">Michi</ion-label>
+          <ion-label class="score">Score: 12012</ion-label>
+        </div>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text class="placement">5</ion-text>
+        <div>
+          <ion-label class="username">Michi</ion-label>
+          <ion-label class="score">Score: 11423</ion-label>
+        </div>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-text class="placement">6</ion-text>
+        <div>
+          <ion-label class="username">Michi</ion-label>
+          <ion-label class="score">Score: 9872</ion-label>
+        </div>
+      </ion-item>
+    </ion-list>
+  
 </ion-content>
