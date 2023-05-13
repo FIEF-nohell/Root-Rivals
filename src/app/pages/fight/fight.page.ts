@@ -47,8 +47,8 @@ export class FightPage implements OnInit {
           if (plant !== undefined) {
             this.opponent = opponent;
             this.plant = plant;
-            this.enemy_damage = (this.opponent.damage + (this.opponent.level * ((this.opponent.damage / 100) * 3))).toFixed(1);
-            this.self_damage = (this.plant.damage + (this.plant.level * ((this.plant.damage / 100) * 3))).toFixed(1);
+            this.enemy_damage = (this.plant.damage + (this.plant.level * ((this.plant.damage / 100) * 3))).toFixed(1);
+            this.self_damage = (this.opponent.damage + (this.opponent.level * ((this.opponent.damage / 100) * 3))).toFixed(1);
             console.log(this.opponent)
             console.log(this.plant)
             this.start_fight()

@@ -16,7 +16,7 @@
       Search Enemy
     </ion-button>
     <ion-text class="ion-text-center">
-      <p>Your HP: {{ this.plant.health }}</p>
+      <p>Your HP: {{ (this.plant.health)?.toFixed(1) }}</p>
     </ion-text>
   </ion-card>
 
