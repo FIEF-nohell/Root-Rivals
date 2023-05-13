@@ -32,7 +32,7 @@ export class FightService {
         if (user) {
           await this.db.collection('plants').ref.where("uid", "!=", user?.uid).get().then((data: any) => {
             data.forEach(async (mathias: any) => {
-              if(mathias.data().attackable == true) this.opponents.push(mathias.data())
+              if(mathias.data().attackable == true && mathias.data().health >0) this.opponents.push(mathias.data())
             });
             this.opponent = this.getRandomItem(this.opponents)
             observer.next(this.opponent);
