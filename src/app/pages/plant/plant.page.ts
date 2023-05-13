@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { FightService } from 'src/app/services/fight.service';
 import { PlantService } from 'src/app/services/plant.service'; 
 
 @Component({
@@ -9,7 +10,7 @@ import { PlantService } from 'src/app/services/plant.service';
 })
 export class PlantPage implements OnInit {
 
-  constructor(private auth: AuthService, private plantService: PlantService) {}
+  constructor(private auth: AuthService, private plantService: PlantService, private fightService: FightService) {}
 
   canBeWatered = false
   needsWater = false
@@ -19,6 +20,7 @@ export class PlantPage implements OnInit {
 
   ngOnInit() {
     this.plantCheck() // Check if user has Plant
+    this.fightService.getRandomOpponent()
 
     this.plantService.getUserPlantObservable().subscribe((plant) => { // Check if can be watered
       if (plant && plant.canBeWatered !== undefined) {

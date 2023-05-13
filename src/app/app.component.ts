@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { PlantService } from './services/plant.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,8 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private AuthService: AuthService) {
+  constructor(private AuthService: AuthService, private plantService: PlantService) {
     this.AuthService.getUid();
+    this.plantService.setStatus();
   }
 }

@@ -27,6 +27,7 @@ interface Plant {
   level: number,
   canBeWatered: boolean,        // water level is below 120
   needsWater: boolean,          // water level is below 60
+  attackable: boolean,     
   plantScore: number,
 }
 
@@ -79,6 +80,7 @@ export class PlantService {
         perfectTimeframe: [totalTimeframe*0.2, totalTimeframe*0.4],
         canBeWatered: false,
         needsWater: false,
+        attackable: true,
         level: 1,
         plantScore: 0,
       };
@@ -104,6 +106,27 @@ export class PlantService {
       await alert.present()
     } catch (error) {
       console.error('Error creating plant:', error)
+    }
+  }
+
+  async setStatus() {
+      try {
+        await this.afAuth.user.subscribe(async user => {
+          if (user) {
+            this.db.collection('plants').ref.where("uid", "==", user?.uid).get().then((data: any) => {
+              data.forEach(async (raul: any) => {
+                let plantId = raul.id
+                await this.db.collection("plants").doc(plantId).update(
+                  {
+                    attackable: true
+                  }
+                )
+              });
+            });
+          }
+        });
+      } catch (error) {
+      console.error('Error while updating plant:', error)
     }
   }
 
