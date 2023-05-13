@@ -72,7 +72,7 @@ export class FightPage implements OnInit {
     console.log(this.plant, this.opponent)
 
     for (let x = 0; x < x+1; x++) {
-      await this.delay(800)
+      await this.delay(100)
       if (x % 2 == 0) {
         this.attackPlant(this.opponent, this.plant)
       }
@@ -81,7 +81,40 @@ export class FightPage implements OnInit {
       }
       if (this.plant.health <= 0) {
         this.plant.health = 0
-        this.setXP = this.setXP/2
+
+        let xp = this.plant.experience + this.setXP/2
+        let lvl = this.plant.level
+        let losses = this.plant.losses
+        if (xp >= 100){
+          xp = xp - 100
+          lvl = lvl + 1
+        }
+        let obj = {
+          "experience": xp,
+          "level": lvl,
+          "losses": losses + 1,
+          "health": 0,
+        }
+        console.log("opp id: " + this.opponent.uid)
+        console.log("plant id: " + this.plant.uid)
+        this.plantService.updateUserByUID(this.plant.uid, obj)
+
+        xp = this.opponent.experience + this.setXP/2
+        lvl = this.opponent.level
+        let wins = this.opponent.wins
+        if (xp >= 100){
+          xp = xp - 100
+          lvl = lvl + 1
+        }
+        let newobj = {
+          "experience": xp,
+          "level": lvl,
+          "wins": wins + 1,
+          "health": 100,
+          "attackable": false
+        }
+        this.plantService.updateUserByUID(this.opponent.uid, newobj)
+
         await this.delay(500)
         this.in_fight = false;
         this.win = false;
@@ -90,6 +123,38 @@ export class FightPage implements OnInit {
       }
       else if (this.opponent.health <= 0) {
         this.opponent.health = 0
+        
+        let xp = this.opponent.experience + (this.setXP/2)/2
+        let lvl = this.opponent.level
+        let losses = this.opponent.losses
+        if (xp >= 100){
+          xp = xp - 100
+          lvl = lvl + 1
+        }
+        let obj = {
+          "experience": xp,
+          "level": lvl,
+          "losses": losses + 1,
+          "health": 0,
+        }
+        this.plantService.updateUserByUID(this.opponent.uid, obj)
+
+        xp = this.plant.experience + this.setXP/2
+        lvl = this.plant.level
+        let wins = this.plant.wins
+        if (xp >= 100){
+          xp = xp - 100
+          lvl = lvl + 1
+        }
+        let newobj = {
+          "experience": xp,
+          "level": lvl,
+          "wins": wins + 1,
+          "health": 100,
+          "attackable": false
+        }
+        this.plantService.updateUserByUID(this.plant.uid, newobj)
+
         await this.delay(500)
         this.in_fight = false;
         this.win = true;
