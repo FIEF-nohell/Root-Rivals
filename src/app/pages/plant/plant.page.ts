@@ -29,6 +29,13 @@ export class PlantPage implements OnInit {
         this.progress = this.plantLel.water * 0.01  
       }
     });
+
+    setInterval(() => {
+      this.plantService.calculateWaterLevel()
+      this.plantLel.water = this.plantService.plant.currentWaterLevel
+      this.canBeWatered = this.plantService.plant.canBeWatered;
+      this.progress = this.plantLel.water * 0.01  
+    }, 1000)
   }
 
   async plantCheck(){

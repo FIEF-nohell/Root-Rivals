@@ -186,16 +186,16 @@ export class PlantService {
           if (user) {
             this.db.collection('plants').ref.where("uid", "==", user?.uid).get().then((data: any) => {
               data.forEach(async (raul: any) => {
-                let plantId = raul.id
-                await this.db.collection("plants").doc(plantId).update(
+                let plantId = raul.id 
+                /* await this.db.collection("plants").doc(plantId).update(
                   {
                     water: this.plant.currentWaterLevel,
                     needsWater: this.plant.needsWater,
                     canBeWatered: this.plant.canBeWatered,
                   }
-                ).then(async () => {
+                ).then(async () => { */
                   await this.calculateScore()
-                })
+                /* }) */
               });
             });
           }
