@@ -45,7 +45,7 @@ export class PlantService {
   async createPlant(type: string = "Mediteran", url: string) {
     try {
       const user = await this.afAuth.currentUser;
-      let totalTimeframe = 300
+      let totalTimeframe = 30
       let atck = 15
       let def = 8
       switch (type) {

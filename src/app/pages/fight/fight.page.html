@@ -55,7 +55,8 @@
       <ion-card-title *ngIf="!this.win">Unlucky</ion-card-title>
     </ion-card-header>
     <ion-card-content>    
-      <ion-progress-bar [buffer]="0.7" [value]="0.5"></ion-progress-bar>
+      <ion-progress-bar *ngIf="this.win" buffer="" value="({{this.plant.experience}} * 0.01) + ({{this.setXP}} * 0.01)"></ion-progress-bar>
+      <ion-progress-bar *ngIf="!this.win" buffer="" value="({{this.plant.experience}} * 0.01) + (({{this.setXP}}/2) * 0.01)"></ion-progress-bar>
       <ion-button (click)="reset_combat()" style="margin-top: 25px;" expand="block" fill="clear" shape="round">
         Continue
       </ion-button>

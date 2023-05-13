@@ -177,6 +177,7 @@ export class FightPage implements OnInit, ViewWillEnter {
         await this.delay(500)
         this.in_fight = false;
         this.win = true;
+        console.log((this.plant.experience * 0.01) + (this.setXP * 0.01))
         this.results = true;
         break;
       }
