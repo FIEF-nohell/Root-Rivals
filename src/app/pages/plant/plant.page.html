@@ -17,7 +17,8 @@
   
   <ion-progress-bar style="width: 80%; margin: auto; margin-top: 25px;" [value]="progress"></ion-progress-bar>
 
-  <ion-label class="ion-text-center" style="position: absolute; left: 50%; transform: translate(-50%); margin-top: 5px;">{{ this.plantLel?.water }}%</ion-label>
+  <ion-label class="ion-text-center" style="position: absolute; left: 50%; transform: translate(-50%); margin-top: 5px;" *ngIf="this.plantLel?.water > 0">{{ this.plantLel?.water }}%</ion-label>
+  <ion-label class="ion-text-center" style="position: absolute; left: 50%; transform: translate(-50%); margin-top: 5px;" *ngIf="this.plantLel?.water < 0">0%</ion-label>
 
   <ion-button style="margin-top: 35px; margin-left: 35px; margin-right: 35px;" [disabled]="this.canBeWatered==false" (click)="waterPlant()" expand="block" shape="round">
     Water Plant
